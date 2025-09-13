@@ -29,77 +29,111 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => console.error('Failed to load header:', err));
 
-  /* ======================
-     Load Footer
-  ====================== */
-  fetch('../../components/footer.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('footerContainer').innerHTML = data;
-    })
-    .catch(err => console.error('Failed to load footer:', err));
+      /* ======================
+      Build Table of Contents
+    ====================== */
+    const tocAside = document.getElementById('tocAside');
+    const tocToggle = document.getElementById('tocToggle');
+    const tocList = document.getElementById('tocList');
 
-  /* ======================
-     Build Table of Contents
-  ====================== */
-  const tocAside = document.getElementById('tocAside');
-  const tocToggle = document.getElementById('tocToggle');
-  const tocList = document.getElementById('tocList');
+    if (tocAside && tocToggle && tocList) {
+      tocToggle.addEventListener('click', () => tocAside.classList.toggle('active'));
 
-  if (tocAside && tocToggle && tocList) {
-    tocToggle.addEventListener('click', () => tocAside.classList.toggle('active'));
-
-    // Close TOC when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!tocAside.contains(e.target) && !tocToggle.contains(e.target)) {
-        tocAside.classList.remove('active');
-      }
-    });
-
-    // Add blog title at the top
-    const blogTitle = document.querySelector('main h1')?.textContent || "Blog Post";
-    const titleEl = document.createElement('h2');
-    titleEl.className = "toc-blog-title";
-    titleEl.textContent = blogTitle;
-    tocList.parentElement.insertBefore(titleEl, tocList);
-
-    // Populate TOC from h2 and h3 headings
-    const headings = document.querySelectorAll('main h2, main h3');
-    let currentUl = tocList;
-
-    headings.forEach((heading, index) => {
-      if (!heading.id) heading.id = `heading-${index+1}`;
-
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = `#${heading.id}`;
-      a.textContent = heading.textContent;
-
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.getElementById(heading.id);
-        if (!target) return;
-
-        const headerHeight = document.getElementById('headerContainer')?.offsetHeight || 80;
-        const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-        const scrollPosition = targetTop - headerHeight - (window.innerHeight / 2) + (target.offsetHeight / 2);
-
-        window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
-
-        tocAside.classList.remove('active');
+      // Close TOC when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!tocAside.contains(e.target) && !tocToggle.contains(e.target)) {
+          tocAside.classList.remove('active');
+        }
       });
 
-      li.appendChild(a);
+      // Add blog title at the top
+      const blogTitle = document.querySelector('main h1')?.textContent || "Blog Post";
+      const titleEl = document.createElement('h2');
+      titleEl.className = "toc-blog-title";
+      titleEl.textContent = blogTitle;
+      tocList.parentElement.insertBefore(titleEl, tocList);
 
-      if (heading.tagName === 'H2') {
-        tocList.appendChild(li);
-        currentUl = document.createElement('ul');
-        li.appendChild(currentUl);
-      } else if (heading.tagName === 'H3') {
-        currentUl.appendChild(li);
+      // Build TOC from headings (h2/h3 only)
+      const headings = document.querySelectorAll('main h2, main h3');
+      let currentUl = tocList;
+
+      headings.forEach((heading, index) => {
+        if (!heading.id) heading.id = `heading-${index+1}`;
+
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#${heading.id}`;
+        a.textContent = heading.textContent;
+
+        // Smooth scroll
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          const target = document.getElementById(heading.id);
+          if (!target) return;
+
+          const headerHeight = document.getElementById('headerContainer')?.offsetHeight || 80;
+          const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+          const scrollPosition = targetTop - headerHeight - 20;
+
+          window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+          tocAside.classList.remove('active');
+        });
+
+        li.appendChild(a);
+
+        if (heading.tagName === 'H2') {
+          tocList.appendChild(li);
+          currentUl = document.createElement('ul');
+          li.appendChild(currentUl);
+        } else if (heading.tagName === 'H3') {
+          currentUl.appendChild(li);
+        }
+      });
+
+      /* ======================
+        Add Useful Sites separately (if exist)
+      ====================== */
+      const sitesList = document.querySelectorAll('.useful-sites-list li a');
+      if (sitesList.length > 0) {
+        const sitesTitle = document.createElement('h2');
+        sitesTitle.textContent = "Websites";
+        tocAside.appendChild(sitesTitle);
+
+        const sitesUl = document.createElement('ul');
+        tocAside.appendChild(sitesUl);
+
+        sitesList.forEach((site, idx) => {
+          const parentLi = site.closest('li');
+          if (parentLi && !parentLi.id) {
+            parentLi.id = `site-${idx+1}`;
+          }
+
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = `#${parentLi.id}`;
+          a.textContent = site.textContent;
+
+          // Smooth scroll for site links
+          a.addEventListener('click', e => {
+            e.preventDefault();
+            const target = document.getElementById(parentLi.id);
+            if (!target) return;
+
+            const headerHeight = document.getElementById('headerContainer')?.offsetHeight || 80;
+            const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+            const scrollPosition = targetTop - headerHeight - 20;
+
+            window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+            tocAside.classList.remove('active');
+          });
+
+          li.appendChild(a);
+          sitesUl.appendChild(li);
+        });
       }
-    });
-  }
+    }
+
+
 
   /* ======================
      Load Recommended Posts

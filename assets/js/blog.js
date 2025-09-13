@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
           menuToggle.setAttribute('aria-expanded', false);
         });
       }
-    });
+    })
+    .catch(err => console.error('Failed to load header:', err));
 
   /* ======================
      Load Footer
@@ -35,7 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(res => res.text())
     .then(data => {
       document.getElementById('footerContainer').innerHTML = data;
-    });
+    })
+    .catch(err => console.error('Failed to load footer:', err));
 
   /* ======================
      Build Table of Contents
@@ -45,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const tocList = document.getElementById('tocList');
 
   if (tocAside && tocToggle && tocList) {
-    // Toggle drawer
     tocToggle.addEventListener('click', () => tocAside.classList.toggle('active'));
 
     // Close TOC when clicking outside
@@ -55,14 +56,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Add Blog Title at the top
+    // Add blog title at the top
     const blogTitle = document.querySelector('main h1')?.textContent || "Blog Post";
     const titleEl = document.createElement('h2');
     titleEl.className = "toc-blog-title";
     titleEl.textContent = blogTitle;
     tocList.parentElement.insertBefore(titleEl, tocList);
 
-    // Populate TOC from headings
+    // Populate TOC from h2 and h3 headings
     const headings = document.querySelectorAll('main h2, main h3');
     let currentUl = tocList;
 
@@ -74,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
       a.href = `#${heading.id}`;
       a.textContent = heading.textContent;
 
-      // Smooth scroll to heading
       a.addEventListener('click', e => {
         e.preventDefault();
         const target = document.getElementById(heading.id);
@@ -84,12 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
         const scrollPosition = targetTop - headerHeight - (window.innerHeight / 2) + (target.offsetHeight / 2);
 
-        window.scrollTo({
-          top: scrollPosition,
-          behavior: 'smooth'
-        });
+        window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
 
-        // Close TOC aside
         tocAside.classList.remove('active');
       });
 
@@ -106,51 +102,32 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ======================
-   Load Recommended Posts
+     Load Recommended Posts
   ====================== */
-  const recommendedContainer = document.querySelector('#recommendedPosts .post-cards-container');
+  const recommendedContainer = document.getElementById('recommendedPosts');
+
   if (recommendedContainer) {
     fetch('../../components/posts.html')
       .then(res => res.text())
       .then(data => {
-        // Convert HTML string to DOM nodes
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = data;
 
-        // Pick a few posts to recommend (e.g., first 3 posts)
-        const posts = tempDiv.querySelectorAll('article.post-card');
-        posts.forEach(post => {
-          // Optional: skip the current blog post
+        const allPosts = Array.from(tempDiv.querySelectorAll('article.post-card'));
+
+        // Exclude current post
+        const currentTitle = document.querySelector('main h1')?.textContent;
+        const filteredPosts = allPosts.filter(post => {
           const postTitle = post.querySelector('h3 a')?.textContent;
-          if (postTitle !== document.querySelector('main h1')?.textContent) {
-            recommendedContainer.appendChild(post.cloneNode(true));
-          }
+          return postTitle !== currentTitle;
         });
-      });
+
+        // Shuffle and pick first 3
+        const shuffled = filteredPosts.sort(() => Math.random() - 0.5);
+        recommendedContainer.innerHTML = '';
+        shuffled.slice(0, 3).forEach(post => recommendedContainer.appendChild(post.cloneNode(true)));
+      })
+      .catch(err => console.error('Failed to load recommended posts:', err));
   }
-
-  document.addEventListener("DOMContentLoaded", () => {
-  // Load related posts component
-  const blogPostSection = document.querySelector('.blog-post');
-  if (blogPostSection) {
-    fetch('../../components/posts.html')
-      .then(res => res.text())
-      .then(data => {
-        blogPostSection.insertAdjacentHTML('beforeend', data);
-
-        // Shuffle and limit to 3 posts
-        const recommendedContainer = document.getElementById("recommendedPosts");
-        if (recommendedContainer) {
-          const allPosts = Array.from(recommendedContainer.children);
-          const shuffled = allPosts.sort(() => Math.random() - 0.5);
-          recommendedContainer.innerHTML = "";
-          shuffled.slice(0, 3).forEach(post => recommendedContainer.appendChild(post));
-        }
-      });
-  }
-});
-
-
-
 
 });

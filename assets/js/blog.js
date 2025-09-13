@@ -164,4 +164,12 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(err => console.error('Failed to load recommended posts:', err));
   }
 
+  function copyCode(button) {
+    const code = button.nextElementSibling.innerText;
+    navigator.clipboard.writeText(code).then(() => {
+      button.textContent = "Copied!";
+      setTimeout(() => (button.textContent = "Copy"), 1500);
+    });
+  }
+
 });

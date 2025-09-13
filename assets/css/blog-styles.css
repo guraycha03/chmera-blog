@@ -217,3 +217,31 @@ body {
   text-align: left; /* same alignment as content */
   margin-top: 0.5rem;
 }
+
+code-block {
+  position: relative;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  font-family: monospace;
+  font-size: 0.95rem;
+  border: 1px solid #ddd;
+}
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #758695;
+  color: #fff;
+  border: none;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.copy-btn:hover {
+  background: #5e6d7a;
+}

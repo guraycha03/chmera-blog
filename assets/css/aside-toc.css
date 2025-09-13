@@ -1,0 +1,121 @@
+/* ==============================
+   Modern TOC Aside Panel
+============================== */
+.toc-aside {
+  position: fixed;
+  top: 75px;  /* space from header */
+  left: 0;
+  width: 260px;
+  height: calc(100% - 70px);
+  font-size: 1rem;
+  background: #fdfcf9;               /* soft, neutral background */
+  border-radius: 0 12px 12px 0;
+  box-shadow: 2px 4px 20px rgba(0,0,0,0.08); /* subtle shadow */
+  transform: translateX(-100%);      /* hidden by default */
+  transition: transform 0.35s cubic-bezier(0.77, 0, 0.175, 1); /* smooth slide */
+  padding: 1.25rem;
+  font-family: 'Inter', sans-serif;
+  
+  z-index: 60;
+  color: #3b3c36;                    /* muted text color */
+}
+
+/* Active state: slide in */
+.toc-aside.active {
+  transform: translateX(0);
+}
+
+/* TOC title */
+.toc-aside .toc-nav h3 {
+  font-size: 1.25rem;   /* bigger title */
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #5e6d7a;
+}
+
+/* TOC list */
+.toc-aside .toc-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* TOC list items */
+.toc-aside .toc-nav li {
+  margin-bottom: 0.75rem;
+}
+
+/* TOC list items and links */
+.toc-aside .toc-nav li a {
+  font-size: 1.1rem;     /* slightly larger links */
+  line-height: 1.6;      /* better readability */
+  display: inline-block;
+  color: #758695;
+  transition: color 0.2s ease;
+}
+
+.toc-aside .toc-nav a {
+  text-decoration: none;
+  font-size: 1.5rem;      /* increased from 0.9rem */
+  color: #758695;
+  transition: color 0.2s ease;
+}
+
+.toc-aside .toc-nav a:hover {
+  color: #3b3c36;
+}
+
+/* Toggle button */
+/* Toggle button */
+.toc-toggle {
+  position: absolute;
+  top: 27px;
+  right: -28px;  /* stick slightly out of panel */
+  width: 28px;
+  height: 56px;
+  border-radius: 0 8px 8px 0;
+  background: #aeb7be;           /* muted, professional */
+  color: #fff;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: background 0.2s ease;
+  z-index: 10001;
+
+  border: none;   /* REMOVE the border */
+  outline: none;  /* optional: remove focus outline */
+}
+
+
+.toc-toggle:hover {
+  background: #99a4ad;
+}
+
+.toc-toggle::before {
+  content: '❱';
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.toc-aside.active .toc-toggle::before {
+  transform: rotate(180deg);
+}
+
+/* Optional: smooth scrollbar inside panel */
+.toc-aside .toc-nav {
+  max-height: calc(100% - 60px);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.toc-aside .toc-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.toc-aside .toc-nav::-webkit-scrollbar-thumb {
+  background: rgba(117,134,149,0.4);
+  border-radius: 3px;
+}

@@ -1,0 +1,244 @@
+
+/* assets/css/blog-styles.css  */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Add padding to body so content isn't hidden under header */
+body {
+  padding-top: 70px; 
+}
+
+/* Make header always visible */
+.header {
+  position: fixed;  /* Fix it at the top */
+  top: 0;           /* Stick to top */
+  left: 0;
+  width: 100%;
+  z-index: 1000;    /* Ensure it stays above other content */
+  background-color: #fff; /* Or match your header background */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* subtle shadow */
+}
+
+
+
+/* =========================
+   BLOG GRID & POST CARDS
+========================= */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+/* Post Card */
+.post-card {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Thumbnail */
+.post-card .thumb {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+}
+
+.post-card .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.post-card:hover .thumb img {
+  transform: scale(1.05);
+}
+
+/* Post content */
+.post-card > div {
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Meta */
+.post-meta {
+  font-size: 0.85rem;
+  color: #758695; /* soft muted gray */
+}
+
+.post-meta strong {
+  color: #3b3c36; /* primary text */
+}
+
+/* Post title */
+.post-card h3 {
+  margin: 0.25rem 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.post-card h3 a {
+  text-decoration: none;
+  color: #3b3c36;
+  transition: color 0.2s;
+}
+
+.post-card h3 a:hover {
+  color: #758695;
+}
+
+/* Excerpt */
+.post-excerpt {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #6f6f6f;
+  margin-top: auto;
+}
+
+/* =========================
+   INLINE POST VIEWER
+========================= */
+#postViewer {
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 900px;
+  background-color: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  z-index: 999;
+  overflow-y: auto;
+  max-height: 85vh;
+  display: none;
+}
+
+#postViewer h2 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  color: #3b3c36;
+}
+
+#postViewer p,
+#postViewer li {
+  color: #6f6f6f;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+#postViewer ul {
+  padding-left: 1.5rem;
+}
+
+.close-post {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #3b3c36;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.close-post:hover {
+  color: #758695;
+}
+
+/* =========================
+   RESPONSIVE ADJUSTMENTS
+========================= */
+@media (max-width: 768px) {
+  .post-card .thumb {
+    height: 160px;
+  }
+  #postViewer {
+    padding: 1.5rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .posts-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .post-card .thumb {
+    height: 140px;
+  }
+}
+
+/* Blog Hero Image */
+.post-hero {
+  width: 100%;
+  max-width: 900px;       /* match your content width */
+  margin: 0 auto 1.5rem;  /* center horizontally, with bottom spacing */
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Image inside hero */
+.post-hero img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Landscape specific adjustments */
+.post-hero.landscape img {
+  max-height: 300px;   /* keeps it short and landscape */
+  object-fit: cover;   /* crops nicely while maintaining aspect ratio */
+  width: 100%;
+}
+
+.post-hero figcaption {
+  font-size: 0.9rem;
+  color: #758695; /* muted gray */
+  text-align: left; /* same alignment as content */
+  margin-top: 0.5rem;
+}
+
+/* =========================
+   Recommended / Related Posts
+========================= */
+.recommended-posts {
+  margin-top: 3rem;
+  padding: 1rem;
+  max-width: 900px;      /* keeps content from stretching too wide */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.recommended-posts h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: #5e6d7a;
+  text-align: center;    /* optional, looks clean */
+}
+
+.post-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  justify-items: center; /* centers cards if fewer than full row */
+}

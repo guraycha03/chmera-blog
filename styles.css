@@ -50,7 +50,7 @@
   font-style: normal;
   font-weight: 500;
   src: url('assets/fonts/quicksand/quicksand-v37-latin-500.woff2') format('woff2'),
-       url('asets/fonts/quicksand/quicksand-v37-latin-500.woff') format('woff');
+       url('assets/fonts/quicksand/quicksand-v37-latin-500.woff') format('woff');
 }
 
 /* Quicksand SemiBold (600) */

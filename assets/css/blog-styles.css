@@ -1,26 +1,22 @@
-
 /* assets/css/blog-styles.css  */
+
 html {
     scroll-behavior: smooth;
 }
 
-/* Add padding to body so content isn't hidden under header */
 body {
   padding-top: 70px; 
 }
 
-/* Make header always visible */
 .header {
-  position: fixed;  /* Fix it at the top */
-  top: 0;           /* Stick to top */
+  position: fixed;  
+  top: 0;           
   left: 0;
   width: 100%;
-  z-index: 1000;    /* Ensure it stays above other content */
-  background-color: #fff; /* Or match your header background */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* subtle shadow */
+  z-index: 1000;    
+  background-color: #fff; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
 }
-
-
 
 /* =========================
    BLOG GRID & POST CARDS
@@ -191,49 +187,103 @@ body {
 /* Blog Hero Image */
 .post-hero {
   width: 100%;
-  max-width: 900px;       /* match your content width */
-  margin: 0 auto 1.5rem;  /* center horizontally, with bottom spacing */
+  max-width: 900px;      
+  margin: 0 auto 1.5rem;  
   border-radius: 12px;
   overflow: hidden;
 }
-
-/* Image inside hero */
+ */
 .post-hero img {
   width: 100%;
   display: block;
   border-radius: 12px;
 }
 
-/* Landscape specific adjustments */
 .post-hero.landscape img {
-  max-height: 300px;   /* keeps it short and landscape */
-  object-fit: cover;   /* crops nicely while maintaining aspect ratio */
+  max-height: 300px;  
+  object-fit: cover;  
   width: 100%;
 }
 
 .post-hero figcaption {
   font-size: 0.9rem;
-  color: #758695; /* muted gray */
-  text-align: left; /* same alignment as content */
+  color: #758695; 
+  text-align: left; 
   margin-top: 0.5rem;
 }
 
-code-block {
+/* List styling */
+.blog-post ul {
+  list-style: none; 
+  padding-left: 1.5rem;
+  margin-left: 0;
+}
+
+.blog-post ul li {
   position: relative;
-  background: #f5f5f5;
-  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem; 
+  line-height: 1.5;
+}
+
+/* Custom bullet */
+.blog-post ul li::before {
+  content: "•"; 
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #7f9aa4;
+  font-size: 1.2em;
+  line-height: 1.5;
+}
+
+/* Link styling */
+.blog-post ul li a {
+  text-decoration: none;
+  color: #5a5c54;
+  font-weight: 500;
+  transition: color 0.25s ease, border-bottom 0.25s ease;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.blog-post ul li a:hover,
+.blog-post ul li a:focus {
+  color: #7f9aa4;
+  border-bottom: 1px solid #7f9aa4;
+}
+
+.blog-post ul li a code {
+  background-color: #f2f2f0;
+  padding: 0 0.25rem;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.code-card {
+  position: relative;
+  background-color: #f5f7fa;
+  border: 2px solid #95a3ac;
+  border-radius: 12px;
   padding: 1rem;
   margin: 1.5rem 0;
   overflow-x: auto;
-  font-family: monospace;
-  font-size: 0.95rem;
-  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
+
+.code-card pre {
+  margin: 0;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333435;
+}
+
 .copy-btn {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  background: #758695;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #7f9aa4;
   color: #fff;
   border: none;
   padding: 0.35rem 0.7rem;
@@ -242,6 +292,41 @@ code-block {
   cursor: pointer;
   transition: background 0.2s;
 }
+
 .copy-btn:hover {
-  background: #5e6d7a;
+  background: #647c8a;
+}
+
+
+.words-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  color: #3b3c36;
+}
+
+.words-table th,
+.words-table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+.words-table th {
+  background-color: #f8f8f8;
+  font-weight: 600;
+}
+
+.words-table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.words-table tbody tr:hover {
+  background-color: #f0f4f8;
+}
+
+.words-table .highlight-word {
+    font-weight: 600;      
+    color: #555e66;       
 }

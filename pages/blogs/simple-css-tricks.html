@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Simple CSS Tricks That Instantly Improve Your Website</title>
+<title>Essential CSS Tricks to Instantly Elevate Your Website</title>
 
 <!-- Styles -->
 <link rel="stylesheet" href="../../styles.css">
@@ -30,14 +30,14 @@
 
 <main>
   <!-- Blog Post -->
-    <section class="blog-post">
+  <section class="blog-post">
 
     <figure class="post-hero landscape">
       <img src="../../assets/images/posts/css-tricks.jpg" alt="CSS tips on a notebook">
       <figcaption>Small CSS changes, big visual improvement.</figcaption>
     </figure>
 
-    <h1>Simple CSS Tricks That Instantly Improve Your Website</h1>
+    <h1>Essential CSS Tricks to Instantly Elevate Your Website</h1>
     <p class="post-meta">
       <strong>Web Design</strong> • <span>by Charisse Guray</span> • 
       <time datetime="2025-08-20">Aug 20, 2025</time>
@@ -62,6 +62,13 @@
       <li><a href="#prefers">Respect reduced motion</a></li>
       <li><a href="#focus">Accessible focus styles</a></li>
       <li><a href="#composition">Improve stacking with <code>isolation</code> and <code>mix-blend-mode</code></a></li>
+      <li><a href="#scrollbar">Custom scrollbars</a></li>
+      <li><a href="#neumorphism">Neumorphism buttons</a></li>
+      <li><a href="#text-shadow">Text shadows for depth</a></li>
+      <li><a href="#underline-hover">Underline animation on links</a></li>
+      <li><a href="#floating-labels">Floating labels for forms</a></li>
+      <li><a href="#card-hover">Card hover lift with soft shadow</a></li>
+      <li><a href="#gradient-text">Gradient text</a></li>
     </ul>
 
     <hr>
@@ -71,7 +78,9 @@
       Define your colors, spacing, and font scale as variables. It's easier to tweak the whole site from one place.
       I keep my palette soft and muted, so I only change variables rather than hunting through files.
     </p>
-    <pre><code>/* root variables */
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>/* root variables */
 :root{
   --bg: #fbfaf8;
   --text: #3b3c36;
@@ -81,42 +90,46 @@
   --space-2: 1rem;
   --radius: 12px;
 }</code></pre>
+    </div>
 
     <h2 id="clamp">2. Responsive typography with <code>clamp()</code></h2>
-    <p>
-      `clamp()` gives a min, preferred, and max size in one line. No JS, no media queries.
-    </p>
-    <pre><code>html { font-size: 16px; }
+    <p>`clamp()` gives a min, preferred, and max size in one line. No JS, no media queries.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>html { font-size: 16px; }
 h1 {
   font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
   line-height: 1.05;
 }</code></pre>
+    </div>
 
     <h2 id="gap">3. Use <code>gap</code> for clean spacing in flex/grid</h2>
-    <p>
-      `gap` works for both grid and flex now — much nicer than combining margins and special-casing first/last child.
-    </p>
-    <pre><code>.toolbar {
+    <p>`gap` works for both grid and flex now — much nicer than combining margins and special-casing first/last child.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>.toolbar {
   display: flex;
   gap: 1rem; /* small, consistent spacing */
   align-items: center;
 }</code></pre>
+    </div>
 
     <h2 id="center">4. Center things perfectly with CSS Grid</h2>
-    <p>
-      Want to center a loader or hero content? Grid makes it trivial and robust.
-    </p>
-    <pre><code>.center {
+    <p>Want to center a loader or hero content? Grid makes it trivial and robust.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>.center {
   display: grid;
   place-items: center; /* both axis centered */
   min-height: 240px;
 }</code></pre>
+    </div>
 
     <h2 id="hover">5. Smooth hover & focus transitions</h2>
-    <p>
-      Small transitions make interactions feel polished. Animate transform & opacity rather than layout-affecting properties.
-    </p>
-    <pre><code>.card {
+    <p>Small transitions make interactions feel polished. Animate transform & opacity rather than layout-affecting properties.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>.card {
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 .card:hover,
@@ -124,12 +137,13 @@ h1 {
   transform: translateY(-6px);
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }</code></pre>
+    </div>
 
     <h2 id="object-fit">6. Images: <code>object-fit</code> + <code>aspect-ratio</code></h2>
-    <p>
-      Keep images from stretching and ensure consistent aspect ratios with these two properties.
-    </p>
-    <pre><code>.thumb {
+    <p>Keep images from stretching and ensure consistent aspect ratios with these two properties.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>.thumb {
   width: 100%;
   height: 180px;
   overflow: hidden;
@@ -141,48 +155,190 @@ h1 {
   object-fit: cover;
   aspect-ratio: 16 / 9; /* keeps consistent crop */
 }</code></pre>
+    </div>
 
     <h2 id="line-clamp">7. Multiline truncation (clean excerpts)</h2>
-    <p>
-      Use `-webkit-line-clamp` for a tidy three-line excerpt. Works well for cards.
-    </p>
-    <pre><code>.excerpt {
+    <p>Use `-webkit-line-clamp` for a tidy three-line excerpt. Works well for cards.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>.excerpt {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3; /* number of lines */
   overflow: hidden;
 }</code></pre>
+    </div>
 
     <h2 id="prefers">8. Respect <code>prefers-reduced-motion</code></h2>
-    <p>
-      Some users prefer fewer animations. Toggle your transitions off for those users.
-    </p>
-    <pre><code>@media (prefers-reduced-motion: reduce) {
+    <p>Some users prefer fewer animations. Toggle your transitions off for those users.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>@media (prefers-reduced-motion: reduce) {
   .card, * {
     transition: none !important;
     animation: none !important;
   }
 }</code></pre>
+    </div>
 
     <h2 id="focus">9. Make focus states visible and pleasant</h2>
-    <p>
-      Don’t remove outlines — style them. Use <code>:focus-visible</code> so keyboard users get a clear focus ring without showing it to mouse users.
-    </p>
-    <pre><code>button:focus-visible,
+    <p>Don’t remove outlines — style them. Use <code>:focus-visible</code> so keyboard users get a clear focus ring without showing it to mouse users.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>button:focus-visible,
 a:focus-visible {
   outline: 3px solid rgba(127,154,164,0.25);
   outline-offset: 3px;
   border-radius: 8px;
 }</code></pre>
+    </div>
 
     <h2 id="composition">10. Reduce compositing surprises with <code>isolation</code></h2>
-    <p>
-      If blending / drop-shadows are misbehaving, try `isolation: isolate;` on the container to create a new stacking context.
-    </p>
-    <pre><code>.card {
+    <p>If blending / drop-shadows are misbehaving, try `isolation: isolate;` on the container to create a new stacking context.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>.card {
   isolation: isolate;
   mix-blend-mode: normal; /* helpful when overlays exist */
 }</code></pre>
+    </div>
+
+    <h2 id="scrollbar">11. Custom Scrollbars</h2>
+    <p>Make scrollbars look clean and consistent across browsers.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>/* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0f0f0;
+      border-radius: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #7f9aa4;
+      border-radius: 8px;
+    }</code></pre>
+    </div>
+
+    <h2 id="neumorphism">12. Neumorphism Buttons</h2>
+    <p>Soft shadow buttons that feel modern and tactile.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>.neumorphic-btn {
+      background: #fbfaf8;
+      border-radius: 12px;
+      box-shadow: 6px 6px 12px #d1d9de,
+                  -6px -6px 12px #ffffff;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .neumorphic-btn:hover {
+      box-shadow: 2px 2px 6px #d1d9de,
+                  -2px -2px 6px #ffffff;
+    }</code></pre>
+    </div>
+
+    <h2 id="text-shadow">13. Text Shadows for Depth</h2>
+    <p>Add subtle depth to headings or hero text.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>h1 {
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+    }</code></pre>
+    </div>
+
+    <h2 id="underline-hover">14. Underline Animation on Links</h2>
+    <p>Stylish hover effect for links without JS.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>a {
+      position: relative;
+      text-decoration: none;
+      color: var(--text);
+    }
+    a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: right;
+    }
+    a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }</code></pre>
+    </div>
+
+    <h2 id="floating-labels">15. Floating Labels for Forms</h2>
+    <p>Clean, modern forms without external libraries.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>.form-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d1d9de;
+      border-radius: 8px;
+    }
+    .form-group label {
+      position: absolute;
+      top: 50%;
+      left: 0.75rem;
+      transform: translateY(-50%);
+      background: var(--bg);
+      padding: 0 0.25rem;
+      color: #758695;
+      transition: 0.2s;
+      pointer-events: none;
+    }
+    .form-group input:focus + label,
+    .form-group input:not(:placeholder-shown) + label {
+      top: -0.5rem;
+      left: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--accent);
+    }</code></pre>
+    </div>
+
+    <h2 id="card-hover">16. Card Hover Lift with Soft Shadow</h2>
+    <p>Make cards lift subtly on hover for a polished look.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>.card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    }</code></pre>
+    </div>
+
+    <h2 id="gradient-text">17. Gradient Text</h2>
+    <p>Eye-catching text without images.</p>
+    <div class="code-card">
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+      <pre><code>.gradient-text {
+      background: linear-gradient(90deg, #7f9aa4, #758695);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }</code></pre>
+    </div>
+
 
     <h2 id="extra">Bonus: small habits that add polish</h2>
     <ul>
@@ -196,7 +352,6 @@ a:focus-visible {
       like adding <code>gap</code> or a better focus ring, can lift the whole design.
     </p>
 
-
   </section>
 
   <!-- Recommended Posts -->
@@ -205,6 +360,7 @@ a:focus-visible {
     <div class="post-cards-container" id="recommendedPosts"></div>
   </section>
 </main>
+
 
 <a id="bottom"></a>
 

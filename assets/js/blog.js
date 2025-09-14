@@ -29,6 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => console.error('Failed to load header:', err));
 
+    /* ======================
+      Load Footer
+    ====================== */
+    fetch('../../components/footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footerContainer').innerHTML = data;
+      })
+      .catch(err => console.error('Failed to load footer:', err));
+
       /* ======================
       Build Table of Contents
     ====================== */
@@ -53,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
       titleEl.textContent = blogTitle;
       tocList.parentElement.insertBefore(titleEl, tocList);
 
-      // Build TOC from headings (h2/h3 only)
       const headings = document.querySelectorAll('main h2, main h3');
       let currentUl = tocList;
 
@@ -65,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
         a.href = `#${heading.id}`;
         a.textContent = heading.textContent;
 
-        // Smooth scroll
         a.addEventListener('click', e => {
           e.preventDefault();
           const target = document.getElementById(heading.id);
@@ -91,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       /* ======================
-        Add Useful Sites separately (if exist)
+        Add Useful Sites
       ====================== */
       const sitesList = document.querySelectorAll('.useful-sites-list li a');
       if (sitesList.length > 0) {
@@ -113,7 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
           a.href = `#${parentLi.id}`;
           a.textContent = site.textContent;
 
-          // Smooth scroll for site links
           a.addEventListener('click', e => {
             e.preventDefault();
             const target = document.getElementById(parentLi.id);
@@ -133,8 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-
-
   /* ======================
      Load Recommended Posts
   ====================== */
@@ -149,14 +154,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const allPosts = Array.from(tempDiv.querySelectorAll('article.post-card'));
 
-        // Exclude current post
         const currentTitle = document.querySelector('main h1')?.textContent;
         const filteredPosts = allPosts.filter(post => {
           const postTitle = post.querySelector('h3 a')?.textContent;
           return postTitle !== currentTitle;
         });
 
-        // Shuffle and pick first 3
         const shuffled = filteredPosts.sort(() => Math.random() - 0.5);
         recommendedContainer.innerHTML = '';
         shuffled.slice(0, 3).forEach(post => recommendedContainer.appendChild(post.cloneNode(true)));
@@ -164,12 +167,19 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(err => console.error('Failed to load recommended posts:', err));
   }
 
-  function copyCode(button) {
-    const code = button.nextElementSibling.innerText;
-    navigator.clipboard.writeText(code).then(() => {
-      button.textContent = "Copied!";
-      setTimeout(() => (button.textContent = "Copy"), 1500);
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const code = btn.nextElementSibling.innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+        btn.textContent = 'Error';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+      });
     });
-  }
+  });
+
 
 });

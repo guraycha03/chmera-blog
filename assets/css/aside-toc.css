@@ -1,5 +1,5 @@
 /* ==============================
-   Modern TOC Aside Panel
+  TOC Aside Panel
 ============================== */
 .toc-aside {
   position: fixed;
@@ -16,12 +16,10 @@
   font-family: 'Inter', sans-serif;
   z-index: 60;
   color: #3b3c36;
-
-  display: flex;              /* ✅ makes content stretch */
+  display: flex;              
   flex-direction: column;
 }
 
-/* Active state: slide in */
 .toc-aside.active {
   transform: translateX(0);
 }
@@ -57,7 +55,7 @@
 
 .toc-aside .toc-nav a {
   text-decoration: none;
-  font-size: 1.5rem;      /* increased from 0.9rem */
+  font-size: 1.5rem;     
   color: #758695;
   transition: color 0.2s ease;
 }
@@ -67,15 +65,14 @@
 }
 
 /* Toggle button */
-/* Toggle button */
 .toc-toggle {
   position: absolute;
   top: 27px;
-  right: -28px;  /* stick slightly out of panel */
+  right: -28px; 
   width: 28px;
   height: 56px;
   border-radius: 0 8px 8px 0;
-  background: #aeb7be;           /* muted, professional */
+  background: #aeb7be;           
   color: #fff;
   font-size: 1.2rem;
   display: flex;
@@ -85,11 +82,9 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   transition: background 0.2s ease;
   z-index: 10001;
-
-  border: none;   /* REMOVE the border */
-  outline: none;  /* optional: remove focus outline */
+  border: none;  
+  outline: none;  
 }
-
 
 .toc-toggle:hover {
   background: #99a4ad;
@@ -107,8 +102,8 @@
 
 /* Scrollable TOC content */
 .toc-aside .toc-nav {
-  flex: 1;                    /* ✅ take all remaining height */
-  overflow-y: auto;           /* ✅ allow scrolling */
+  flex: 1;                  
+  overflow-y: auto;        
   padding-right: 0.5rem;
   margin: 0;
 }

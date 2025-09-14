@@ -1,8 +1,6 @@
 
-
-
 /* =========================
-   THEME VARIABLES
+   THEME & LAYOUT VARIABLES
 ========================= */
 :root {
   --bg: #fffcfa;          
@@ -71,20 +69,17 @@
        url('assets/fonts/quicksand/quicksand-v37-latin-700.woff') format('woff');
 }
 
-
-
-
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1a1a1a;
+    --bg: #3b3c36;
     --panel: #222;
     --text: #eaeaea;
     --muted: #aaa;
-    --primary: #d4c299;
-    --primary-600: #bda67a;
+    --primary: #758695;    
+    --primary-600: #5e6d7a; 
     --ring: rgba(212, 194, 153, 0.35);
-    --border: #2a2a2a;
+    --border: #ccd7e0;
     --shadow: 0 2px 6px rgba(0,0,0,.6), 0 10px 28px rgba(0,0,0,.45);
   }
 }
@@ -170,7 +165,7 @@ a:hover {
   z-index: 70;
   display: flex;
   flex-direction: column;
-  background: var(--panel); /* solid background */
+  background: var(--panel); 
   transition: height 0.3s ease;
   border-bottom: 2px solid var(--border);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
@@ -279,7 +274,7 @@ nav.primary a:hover {
 ========================= */
 .mobile-nav {
   position: fixed;
-  top: var(--header-height); /* instead of 0 */
+  top: var(--header-height); 
   right: 0;
   width: 260px;
   height: calc(100vh - var(--header-height));
@@ -296,9 +291,8 @@ nav.primary a:hover {
   border-bottom-right-radius: var(--radius);
 }
 
-
 .mobile-nav.active {
-  transform: translateX(0); /* slide in from right */
+  transform: translateX(0);
 }
 
 /* Navigation links */
@@ -315,14 +309,12 @@ nav.primary a:hover {
   transition: background 0.25s ease, color 0.25s ease;
 }
 
-/* Mobile/side menu links hover to match header links */
 .mobile-nav a:hover {
-  background-color: rgba(117, 134, 149, 0.1); /* same as header hover */
-  color: var(--primary);                       /* same text color */
+  background-color: rgba(117, 134, 149, 0.1); 
+  color: var(--primary);                       
   text-decoration: none;
   transition: background 0.25s ease, color 0.25s ease;
 }
-
 
 /* =========================
    RESPONSIVE
@@ -368,9 +360,6 @@ nav.primary a:hover {
   pointer-events: auto;
 }
 
-
-
-
 /* =========================
    MAIN LAYOUT
    ========================= */
@@ -383,7 +372,7 @@ main {
 .section {
   margin-bottom: 3rem;
   padding: 2rem;
-  background: var(--panel); /* simple solid panel color */
+  background: var(--panel); 
   border-radius: 16px;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
@@ -393,7 +382,6 @@ main {
   margin: 0 0 .85rem;
   font-size: 1.3rem;
 }
-
 
 /* =========================
    ANIMATIONS
@@ -407,19 +395,19 @@ main {
 
 .aside-toggle {
   position: fixed;
-  top: calc(var(--header-height) + 40px); /* just below header */
+  top: calc(var(--header-height) + 40px);
   right: 0;
   width: 40px;
   height: 40px;
   background: var(--primary);
   color: #fff;
   border: none;
-  border-radius: 8px 0 0 8px; /* rounded edge */
+  border-radius: 8px 0 0 8px; 
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  z-index: 70; /* above aside but below header */
+  z-index: 70; 
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
@@ -438,7 +426,6 @@ main {
   transform: rotate(180deg);
 }
 
-
 /* =========================
    HERO SECTION
 ========================= */
@@ -449,14 +436,14 @@ main {
 
 .hero-container {
   display: flex;
-  flex-direction: column; /* Mobile first */
+  flex-direction: column;
   align-items: center;
   gap: 2rem;
   max-width: var(--maxw);
   margin: 0 auto;
 }
 
-/* Image (above text on mobile) */
+/* Image */
 .hero-figure {
   order: -1;
   max-width: 480px;
@@ -558,7 +545,7 @@ main {
   }
 
   .hero-figure {
-    order: 2; /* Move image to the right */
+    order: 2; 
     flex: 1;
     max-width: 500px;
   }
@@ -580,7 +567,6 @@ main {
   }
 }
 
-
 /* =========================
    ARTICLE CONTENT
    ========================= */
@@ -591,7 +577,7 @@ article {
 }
 
 article aside {
-  background: var(--panel); /* keep simple panel background */
+  background: var(--panel); 
   border-left: 4px solid var(--primary);
   padding: 0.8rem 1rem;
   border-radius: 10px;
@@ -599,11 +585,6 @@ article aside {
   color: var(--muted);
   margin-top: 1rem;
 }
-
-
-/* =========================
-   POSTS GRID
-========================= */
 
 /* =========================
    RECOMMENDED POSTS
@@ -622,7 +603,7 @@ article aside {
 
 .post-cards-container {
   display: grid;
-  gap: 2.5rem; /* more space between cards */
+  gap: 2.5rem; 
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
@@ -633,9 +614,9 @@ article aside {
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--border);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05); /* softer, subtle shadow */
-  padding: 1.5rem; /* increased padding */
-  gap: 1.25rem; /* space between thumbnail, title, and excerpt */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
+  padding: 1.5rem; 
+  gap: 1.25rem; 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -686,7 +667,7 @@ h3 {
 /* Responsive adjustments */
 @media (max-width: 767px) {
   .post-cards-container {
-    grid-template-columns: 1fr; /* single column on mobile */
+    grid-template-columns: 1fr; 
     gap: 2rem;
   }
 
@@ -703,91 +684,13 @@ h3 {
 }
 
 /* =========================
-   SINGLE POST LAYOUT
-   ========================= */
-.post-full {
-  background: var(--panel);
-  padding: 1.25rem;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-}
-
-.post-full header {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-.post-full h1 {
-  margin: 0 0 .6rem;
-}
-
-.post-body {
-  margin-top: 1rem;
-  color: var(--text);
-}
-
-.post-body p {
-  margin: .9rem 0;
-}
-
-.post-tags {
-  display: flex;
-  gap: .5rem;
-  margin-top: .8rem;
-}
-
-.tag {
-  font-size: 0.85rem;
-  background: var(--panel); /* simple background */
-  padding: 0.3rem 0.5rem;
-  border-radius: 8px;
-  color: var(--muted);
-  border: 1px solid var(--border);
-}
-
-
-
-
-
-.post-viewer {
-  position: fixed;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 800px;
-  background: #fff;
-  padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  z-index: 1000;
-  overflow-y: auto;
-  max-height: 80vh;
-}
-
-.close-post {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  float: right;
-  cursor: pointer;
-}
-
-
-
-
-/* =========================
    SECTION FOOTER
    ========================= */
 .section-footer {
   margin-top: 2rem;
   display: flex;
-  justify-content: center; /* centered on mobile */
+  justify-content: center;
 }
-
 
 .section-footer .view-all {
   text-decoration: none;
@@ -820,7 +723,6 @@ h3 {
   transform: translateX(4px);
 }
 
-
 /* =========================
    RESPONSIVE
    ========================= */
@@ -828,16 +730,14 @@ h3 {
   .posts-grid {
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1.8rem;
-    grid-template-rows: auto; /* ensures footer aligns with grid */
+    grid-template-rows: auto; 
   }
 
   .section-footer {
     justify-content: flex-end;
-    grid-column: 1 / -1; /* span across all columns */
+    grid-column: 1 / -1; 
   }
 }
-
-
 
 /* About section authors */
 .authors {
@@ -846,9 +746,6 @@ h3 {
   gap: 2rem;
   margin-top: 1.5rem;
 }
-
-
-
 
 .author {
   display: flex;
@@ -876,94 +773,9 @@ h3 {
   margin: 0;
 }
 
-
-/* Responsive adjustments for smaller screens */
+/* Responsive adjustments */
 @media (max-width: 600px) {
-  .authors {
-    flex-direction: column;
-    align-items: stretch;
-  }
 
-  .author {
-    flex: 1;
-    width: 100%;
-    padding: 0.6rem 0.8rem;
-  }
-
-  .author img {
-    width: 54px;
-    height: 54px;
-  }
-
-  .author strong {
-    font-size: 1rem;
-  }
-
-  .author-role {
-    font-size: 0.9rem;
-    line-height: 1.4;
-  }
-}
-
-/* Authors */
-/* Authors container */
-.authors {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap; /* allow wrapping if needed */
-  margin-top: 1.5rem; /* 👈 add space above the author cards */
-}
-
-
-/* Each author card */
-.author {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: var(--panel);
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  border: 1px solid rgba(0,0,0,0.1); /* subtle border */
-  flex: 1 1 300px; /* responsive size */
-  min-width: 250px;
-}
-
-/* Author images */
-.author img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-/* Extra compact author cards on very small screens */
-@media (max-width: 480px) {
-  .author {
-    padding: 0.5rem;        /* less inner space */
-    gap: 0.5rem;            /* reduce gap between avatar + text */
-  }
-
-  .author img {
-    width: 42px;            /* smaller avatar */
-    height: 42px;
-  }
-
-  .author strong {
-    font-size: 0.95rem;     /* shrink name text */
-  }
-
-  .author p {
-    font-size: 0.8rem;      /* shrink role text */
-    line-height: 1.3;       /* reduce line spacing */
-    margin: 0;              /* remove bottom spacing */
-  }
-}
-
-
-/* Make sections tighter on smaller devices */
-/* Compact but balanced author cards on small screens */
-@media (max-width: 600px) {
   .section {
     padding: 1rem; /* tighter section padding */
   }
@@ -993,24 +805,43 @@ h3 {
     font-size: 0.9rem;
     line-height: 1.4;
   }
+
+  .author-role {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
 }
 
+@media (max-width: 480px) {
+  .author {
+    padding: 0.5rem;
+    gap: 0.5rem;           
+  }
 
+  .author img {
+    width: 42px;          
+    height: 42px;
+  }
 
+  .author strong {
+    font-size: 0.95rem;    
+  }
+
+  .author p {
+    font-size: 0.8rem;     
+    line-height: 1.3;     
+    margin: 0;            
+  }
+}
 
 /* =========================
    CONTACT SECTION
 ========================= */
-
-/* =========================
-   CONTACT SECTION
-========================= */
-
-/* Wrapper: split layout */
+/* Wrapper */
 .contact-wrapper {
   display: flex;
-  flex-direction: column; /* mobile-first */
-  min-height: 80vh; /* balanced look */
+  flex-direction: column; 
+  min-height: 80vh; 
 }
 
 /* Left side: illustration */
@@ -1022,14 +853,14 @@ h3 {
 .contact-content {
   flex: 1;
   display: flex;
-  flex-direction: column; /* stack heading and form */
-  align-items: center; /* horizontal center */
-  justify-content: center; /* vertical center */
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
   background: var(--panel); 
   padding: 2rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.068);
-  gap: 1.5rem; /* spacing between heading and form */
-  height: 100%; /* match illustration height */
+  gap: 1.5rem; 
+  height: 100%; 
   box-sizing: border-box;
 }
 
@@ -1043,7 +874,7 @@ h3 {
 /* Contact form */
 .contact-form {
   width: 100%;
-  max-width: 600px; /* increased width */
+  max-width: 600px; 
   display: grid;
   gap: 1rem;
   background: var(--panel);
@@ -1072,7 +903,6 @@ h3 {
   font-size: 0.95rem;
 }
 
-/* Two-column layout for name/email on larger screens */
 @media (min-width: 768px) {
   .contact-form .form-group.double {
     display: flex;
@@ -1127,13 +957,10 @@ h3 {
   }
 
   .contact-form {
-    max-width: 550px; /* increased width to reduce height */
+    max-width: 550px; 
     padding: 1.5rem;
   }
 }
-
-
-
 
 /* =========================
    FOOTER STYLING
@@ -1149,7 +976,7 @@ h3 {
   line-height: 1.6;
 }
 
-/* Container with responsive grid */
+/* Container */
 .footer-container {
   max-width: var(--maxw, 1200px);
   margin: 0 auto;
@@ -1157,23 +984,6 @@ h3 {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2.5rem;
   padding-bottom: 2rem;
-}
-
-/* Brand Section */
-.footer-brand {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-.footer-logo {
-  width: 90px;
-  height: auto;
-  border-radius: 8px;
-  object-fit: contain;
-}
-.footer-brand p {
-  color: var(--muted);
-  font-size: 0.95rem;
 }
 
 /* Footer Navigation Links */
@@ -1200,30 +1010,26 @@ h3 {
 }
 
 /* Footer links */
-/* Make footer links hug only the text and add a smooth underline */
 .footer-column.footer-links,
 .footer-links {
-  /* ensure the column stacks but children don't stretch */
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  align-items: flex-start; /* ← stops children from stretching to full width */
+  align-items: flex-start; 
 }
 
-/* Anchor style: shrink to text and be the positioning context */
 .footer-links a {
   position: relative;
-  display: inline-block;     /* shrinkwrap to the text only */
-  align-self: flex-start;    /* extra safety if parent still stretches */
+  display: inline-block;     
+  align-self: flex-start;    
   text-decoration: none;
   color: var(--muted);
   font-weight: 500;
   transition: color .25s ease;
-  padding: 0;                /* remove any padding that might widen it */
+  padding: 0;                
   margin: 0;
 }
 
-/* animated underline that follows only the text width */
 .footer-links a::after {
   content: "";
   position: absolute;
@@ -1233,7 +1039,7 @@ h3 {
   width: 0;
   background: var(--primary);
   border-radius: 2px;
-  transition: width .6s cubic-bezier(.2,.8,.2,1); /* slow & smooth */
+  transition: width .6s cubic-bezier(.2,.8,.2,1); 
   transform-origin: left center;
 }
 
@@ -1242,10 +1048,8 @@ h3 {
 }
 
 .footer-links a:hover::after {
-  width: 100%; /* grows exactly under the word */
+  width: 100%; 
 }
-
-
 
 /* Social Links */
 .social-icons {
@@ -1255,23 +1059,23 @@ h3 {
   flex-wrap: wrap;
 }
 
-/* Social Links - Squircle Border Only */
+/* Social Links */
 .social-link {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: 14px;      /* squircle effect */
-  background: transparent;   /* remove fill */
-  color: var(--primary-600);        /* icon color */
-  border: 2px solid var(--primary); /* border only */
+  border-radius: 14px;      
+  background: transparent;  
+  color: var(--primary-600);      
+  border: 2px solid var(--primary); 
   transition: all 0.3s ease;
   position: relative;
 }
 
 .social-link:hover {
-  background: var(--primary); /* optional hover effect */
+  background: var(--primary);
   color: #fff;
   transform: translateY(-2px);
 }
@@ -1282,9 +1086,8 @@ h3 {
   fill: currentColor;
 }
 
-/* Make Instagram icon bigger */
 .social-link.instagram svg {
-  width: 1.8rem;  /* slightly bigger than default 1.4rem */
+  width: 1.8rem;  
   height: 1.8rem;
 }
 
@@ -1307,7 +1110,6 @@ h3 {
   transition: all 0.2s ease;
 }
 
-/* Footer Right Column */
 .footer-right {
   display: flex;
   flex-direction: column;
@@ -1322,16 +1124,15 @@ h3 {
   gap: 0.75rem;
 }
 
-
 /* =========================
-   FOOTER NEWSLETTER ENHANCEMENT
+   FOOTER NEWSLETTER
 ========================= */
 
 .footer-newsletter-container {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;       /* spacing between heading and form */
-  max-width: 360px;   /* optional, keeps it neat */
+  gap: 0.75rem;       
+  max-width: 360px;   
 }
 
 .footer-newsletter-container h4 {
@@ -1348,9 +1149,9 @@ h3 {
 }
 
 .footer-newsletter-container input[type="email"] {
-  flex: 1;                     /* take all available space */
-  min-width: 0;                /* prevent overflow on small screens */
-  width: 100%;                 /* keep proportional sizing */
+  flex: 1;                    
+  min-width: 0;               
+  width: 100%;                 
   padding: 0.75rem 1rem;
   border-radius: var(--radius);
   border: 1px solid var(--border);
@@ -1362,7 +1163,7 @@ h3 {
 }
 
 .footer-newsletter-container button {
-  flex-shrink: 0;              /* button won’t shrink */
+  flex-shrink: 0;            
   padding: 0.75rem 1.2rem;
   border-radius: var(--radius);
   border: none;
@@ -1373,31 +1174,25 @@ h3 {
   transition: background 0.25s ease;
 }
 
-
 .footer-newsletter-container button:hover {
   background: var(--primary-600);
 }
 
-/* Footer newsletter input responsive adjustments */
-/* Ensure footer newsletter form stays compact on small screens */
-/* Fix footer newsletter on very small screens */
 @media (max-width: 480px) {
   .footer-newsletter-container form {
     flex-direction: column;
     align-items: stretch;
-    gap: 0.75rem; /* space between input and button */
+    gap: 0.75rem; 
   }
 
   .footer-newsletter-container input[type="email"],
   .footer-newsletter-container button {
-    width: 100%;          /* full width each */
-    max-width: 100%;      /* prevent overflow */
-    padding: 0.7rem 1rem; /* balanced height */
+    width: 100%;         
+    max-width: 100%;      
+    padding: 0.7rem 1rem; 
     border-radius: var(--radius);
   }
 }
-
-
 
 @media (max-width: 600px) {
   .footer-newsletter-container form {
@@ -1406,7 +1201,6 @@ h3 {
   }
 }
 
-/* Responsive: stack right column below on mobile */
 @media (max-width: 768px) {
   .footer-container {
     display: flex;
@@ -1428,9 +1222,6 @@ h3 {
   }
 }
 
-
-
-/* Footer Bottom */
 /* Footer Bottom */
 .footer-bottom {
   display: flex;
@@ -1438,13 +1229,13 @@ h3 {
   align-items: center;
   text-align: center;
   margin-top: 2rem;
-  font-size: 0.95rem;   /* smaller text */
-  line-height: 1.4;     /* keeps it readable */
+  font-size: 0.95rem;   
+  line-height: 1.4;     
   color: var(--muted);
 }
 
 .footer-bottom p {
-  margin: 0; /* remove default paragraph margin */
+  margin: 0; 
 }
 
 .footer-bottom a {
@@ -1467,50 +1258,36 @@ h3 {
 /* Floating Buttons Container */
 .floating-buttons {
   position: fixed;
-  right: 1.5rem;   /* push to the right */
-  bottom: 1.5rem;  /* start near bottom */
+  right: 1.5rem;   
+  bottom: 1.5rem; 
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;    /* space between ↑ and ↓ */
-  z-index: 100;    /* stay above content */
+  gap: 0.75rem;    
+  z-index: 100;    
 }
 
 /* Button Style */
-/* Floating Buttons Container */
-.floating-buttons {
-  position: fixed;
-  right: 1.5rem;
-  bottom: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  z-index: 100;
-}
-
-/* Button Style (subtle, non-distracting) */
 .float-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 2.6rem;
   height: 2.6rem;
-  background: var(--secondary);   /* softer tone */
-  color: var(--text);             /* readable but muted */
+  background: var(--secondary);   
+  color: var(--text);            
   border-radius: 50%;
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08); /* very soft shadow */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08); 
   transition: background 0.25s ease, transform 0.25s ease;
 }
 
 .float-btn:hover {
-  background: var(--accent); /* soft accent, not flashy */
+  background: var(--accent);
   color: #fff;
   transform: translateY(-2px);
 }
-
-
 
 /* =========================
    RESPONSIVE FOOTER
